@@ -1,0 +1,82 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+}
+
+
+
+.input-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 20px;
+    width: 20vw;
+    height: 3vh;
+
+    outline: none;
+}
+
+
+#submit-entrar{
+    margin-top: 10px;
+    width: 20vw;
+    cursor: pointer;
+    height: 3vh;
+}
+
+a{  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 10px;
+
+    border: solid 1px #808080;
+    background-color: #818582;
+    color: #ffffff;
+    border-radius: 20px;
+    height: 3vh;
+
+    text-align: center;
+
+}
+
+.form-register{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.form-register input{
+    width: 20vw;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 10px;
+}
+
+.input-cadastrar{
+
+    cursor: pointer;
+}
