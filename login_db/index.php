@@ -13,7 +13,7 @@
 
 <section class="form-login">
 
-    <form action="login_db/login.php" method="post">
+    <form action="login.php" method="post">
 
 
         <label for="login">

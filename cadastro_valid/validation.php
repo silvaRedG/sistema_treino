@@ -4,6 +4,7 @@ session_start();
 
 require_once '../login_db/db.php';
 
+
 $name = $_POST['name'];
 $email = $_POST['email'];
 $endereco = $_POST['street'];
@@ -12,7 +13,7 @@ $phone = $_POST['tel'];
 $password = $_POST['password'];
 
 $query_check_user = "SELECT email FROM users WHERE email = '$email'"; // variavel pra verificar se o usuario já possui email cadastrado
-$conn_query_register = mysqli_query($conn,$query_check_user); // criando conexão com o banco e verificando se o user possui cadastro
+$conn_query_register = mysqli_query($conn, $query_check_user); // criando conexão com o banco e verificando se o user possui cadastro
 
 $alert[] = "";
 
