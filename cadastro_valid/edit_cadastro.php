@@ -1,49 +1,47 @@
 <?php
 
-session_start();
 
-require_once '../login_db/db.php';
+if (!empty($_GET['id'])) {
+    
+    require_once '../login_db/db.php';
+
+    $user_id = $_GET['id'];
+    $query_update = "SELECT * FROM users WHERE id = '$user_id' ";
+    $conn_update = mysqli_query($conn,$query_update);
 
 
-if (isset($_SESSION['alert'])) {
+    if (mysqli_num_rows($conn_update) > 0) {
+    
+        
+       
+        while ($user_data = mysqli_fetch_assoc($conn_update)) {
+        
+            
+            $name = $user_data['name'];
+            $email = $user_data['email'];
+            $endereco = $user_data['endereco'];
+            $number_end = $user_data['number_end'];
+            $phone = $user_data['phone'];
+            $password = $user_data['password'];
 
-    echo ($_SESSION['alert']);
-    unset($_SESSION['alert']);
+        }
+        
+
+       
+
+    }
+    
+    
+    else{
+        header('Location: ../login_db/index.php');
+    }
+
+
+   
+
+
+
 }
-
-
-$query_users_conn = mysqli_query($conn, $query_users);
-
-if (mysqli_num_rows($query_users_conn) < 1) {
-
-    // criar uma variavel para inserir novos dados na tabela
-    $query_new_user = "UPDATE users 
-    SET name = '$name', 
-        email = '$email', 
-        endereco = '$endereco', 
-        number_end = '$number_end', 
-        phone = '$phone', 
-        password = '$password', 
-        status = 1 
-    WHERE id = $users_id";
-
-    // variavel query pra fazer conexão com o banco e e add novos dados, lembrando que a conn é a quem dentro do arquivo db.php
-    $conn_insert = mysqli_query($conn, $query_new_user);
-
-
-    $alert[] = "Usuario cadastrado";
-
-    header('Location: cadastro.php');
-} else {
-
-
-    $alert[] = "Usuario já possui cadastro";
-
-    header('Location: cadastro.php');
-}
-
-
-
 
 
 ?>
@@ -71,36 +69,36 @@ if (mysqli_num_rows($query_users_conn) < 1) {
 
     <section class="form-register">
 
-        <form action="validation.php" method="post">
+        <form action="saveEdit.php" method="post">
 
             <label for="name">
 
                 <p>Nome :</p>
-                <input type="text" id="name" name="name" autofocus placeholder="Digite seu nome" required>
+                <input type="text" id="name" name="name" autofocus placeholder="Digite seu nome" value="<?php echo $name?>" required>
 
             </label>
 
             <label for="email">
 
                 <p>Email :</p>
-                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo $email?>" required>
 
             </label>
 
             <label for="street">
 
                 <p>Endereço :</p>
-                <input type="text" id="street" name="street" placeholder="Digite seu endereço" required>
+                <input type="text" id="street" name="street" placeholder="Digite seu endereço" value="<?php echo $endereco?>" required>
 
                 <p>Número:</p>
-                <input type="number" id="number" name="number" required>
+                <input type="number" id="number" name="number"  value="<?php echo $number_end?>" required>
 
             </label>
 
             <label for="tel">
 
                 <p>Telefone :</p>
-                <input type="tel" id="tel" name="tel" placeholder="Digite seu telefone" required>
+                <input type="tel" id="tel" name="tel" placeholder="Digite seu telefone" value="<?php echo $phone?>" required>
 
             </label>
 
@@ -109,11 +107,13 @@ if (mysqli_num_rows($query_users_conn) < 1) {
             <label for="password">
 
                 <p>Senha :</p>
-                <input type="password" id="password" name="password" placeholder="Digite uma senha" required>
+                <input type="password" id="password" name="password" placeholder="Digite uma senha" value="<?php echo $password?>" required>
 
             </label>
 
-            <input type="submit" value="Cadastrar" class="input-cadastrar">
+
+            <input type="hidden" name="id" value="<?php echo $user_id ?>">
+            <input type="submit" value="Cadastrar" class="input-cadastrar" name="update" id="update">
             <a href="../login_db/index.php">Entrar</a>
 
 
